@@ -1,20 +1,33 @@
 from src.utils import *
+from src.discriminator import Discriminator
+import itertools
+import random
 
 
 
 if __name__ == "__main__":
     epochs = 10000
+    batch_size = 32
+    names = load_picture_names()
+    random.shuffle(names)
+    descriminator = Discriminator()
+    i = 0
+    #generator = generator()
     for epoch in range(epochs):
-        images = load_pictures()
-        generator = generator()
-        descriminator = descriminator()
+        images = names[i:i+batch_size]
+        i = i+batch_size
+        if i > len(names):
+            i = 0
         modified = get_modified(images)
-        generated_pictures = generator(modified)
-        labels = descriminator(generated_pictures)
-        generator.train(generated_pictures, labels)
+        #generated_pictures = generator(modified)
+        #labels = descriminator(generated_pictures)
+        #generator.train(generated_pictures, labels)
         originals = get_originals(images)
-        descriminator.train(originals, modified)
-        print_result()
+        #descriminator.train(originals, generated_pictures)
+        #print_result()
+
+        data = descriminator.prepare_data(originals, modified)
+        descriminator(data)
 
 
     #shoot through Generator, save output
