@@ -41,9 +41,9 @@ def modify_pictures(src_path, out_path, img_size):
             for x_loc, y_loc, x_size, y_size in rectangles:
                 # set colorchannels to black
                 alphachannel[y_loc:y_loc + y_size + 1, x_loc:x_loc + x_size + 1] = 0
-                img[0][y_loc:y_loc + y_size + 1, x_loc:x_loc + x_size + 1] = 0
-                img[1][y_loc:y_loc + y_size + 1, x_loc:x_loc + x_size + 1] = 0
-                img[2][y_loc:y_loc + y_size + 1, x_loc:x_loc + x_size + 1] = 0
+                img[:,:,0][y_loc:y_loc + y_size + 1, x_loc:x_loc + x_size + 1] = 0
+                img[:,:,1][y_loc:y_loc + y_size + 1, x_loc:x_loc + x_size + 1] = 0
+                img[:,:,2][y_loc:y_loc + y_size + 1, x_loc:x_loc + x_size + 1] = 0
 
             # add alphachannel
             img[:, :, 3] = alphachannel

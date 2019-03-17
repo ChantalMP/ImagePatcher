@@ -36,7 +36,7 @@ class Discriminator(nn.Module):
         x = self.fc1(x)
         x = F.relu(x)
 
-        y = self.fc2(x)
+        y = F.sigmoid(self.fc2(x))
         return y
 
 
@@ -50,4 +50,7 @@ class Discriminator(nn.Module):
         x,y = zip(*c)
 
         x = torch.FloatTensor(x)
+        x = x.transpose(2,3).transpose(1,2)
         y = torch.FloatTensor(y)
+
+        return x,y
