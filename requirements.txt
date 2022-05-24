@@ -2,7 +2,7 @@ torch
 torchvision
 Pillow==6.1
 matplotlib
-tensorflow==1.13.2
+tensorflow==2.6.4
 git+https://github.com/JiahuiYu/neuralgym
 opencv-python
 pyyaml
